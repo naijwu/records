@@ -46,13 +46,23 @@ public class StudentController {
         return studentRepository.save(student);
     }
 
-/*
     @PutMapping("/students/{membership_id}") // updates
     public Student updateStudent(@PathVariable long membership_id, @Valid @RequestBody Student student) {
         Student studentFromDB = studentRepository.findById(membership_id)
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found with ID: " + membership_id));
-        studentFromDB.setPreferred_name(student.setPreferred_name());
-        studentFromDB.setLegal_name(student.getEmail());
+        studentFromDB.setPreferred_name(student.getPreferred_name());
+        studentFromDB.setLegal_name(student.getLegal_name());
+        studentFromDB.setDate_of_birth(student.getDate_of_birth());
+        studentFromDB.setGender(student.getGender());
+        studentFromDB.setMembership_type(student.getMembership_type());
+        studentFromDB.setGrade(student.getGrade());
+        studentFromDB.setDate_of_registration(student.getDate_of_registration());
+        studentFromDB.setSchool(student.getSchool());
+        return studentRepository.save(studentFromDB);
+    }
+
+    /* Contact:
+
         studentFromDB.setHome_phone(student.getHome_phone());
         studentFromDB.setAddress(student.getAddress());
         studentFromDB.setCity(student.getCity());
@@ -61,9 +71,7 @@ public class StudentController {
         studentFromDB.setSubjects(student.getSubjects());
         studentFromDB.setLevel(student.getLevel());
         studentFromDB.setSubjects(student.getSubjects());
-        return studentRepository.save(studentFromDB);
-    }
-    */
+     */
 
     @DeleteMapping("/students/{membership_id}")
     public void delete(@PathVariable long membership_id) {
